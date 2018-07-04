@@ -9,6 +9,20 @@
         "name": "Launch Chrome",
         "url": "http://localhost:8080",
         "webRoot": "${workspaceFolder}"
+    },
+    {
+        "type": "chrome",
+        "request": "attach",
+        "name": "Attach to Chrome",
+        "port": 9222,
+        "webRoot": "${workspaceFolder}"
+    },
+    {
+        "type": "chrome",
+        "request": "launch",
+        "name": "Launch Chrome",
+        "url": "http://localhost:8080",
+        "webRoot": "${workspaceFolder}"
 
         //used npm install http-server -g
     }
