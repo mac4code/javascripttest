@@ -25,27 +25,40 @@ let suits = ["Hearts", "Clubs", "Diamonds", "Spades"];
 let values = ["Ace","King", "Queen", "Jack", "Ten", "Nice", "Eight", "Seven", "Six", "Five", "Four", "Three", "Two"];
 
 
-
-let deck = [];
-
-for (let suitsIndex=0; suitsIndex<suits.length; suitsIndex++){
-    for(let valuesIndex = 0; valuesIndex < values.length; valuesIndex++){
-        deck.push(values[valuesIndex] + " of " + suits[suitsIndex]);
+function createDeck(numberOfDecks){
+    deck = []; // clearing the decks
+    for (let suitsIndex=0; suitsIndex<suits.length; suitsIndex++){
+        for(let valuesIndex = 0; valuesIndex < values.length; valuesIndex++){
+            let card = {
+                suit: suits[suitsIndex],
+                value: value[valuesIndex]
+            };
+            deck.push(card);
     }
+    return deck;
+    }
+
+    function getCardString(card){
+    return card.value + 'of' + card.suit;
+
 }
 
-for (let i=0; i < deck.length; i++){
-console.log(deck[i]);
+    let deck = createDeck();
 
-};
+}
+
+function getNextCard(){
+    return deck.shift();
+
+}
 
 
-let playerCards = [deck[0], deck[1], deck[2]]
+let playerCards = [getNextCard(),getNextCard() ]
 
     console.log("Welcome to Blackjack");
     console.log("You are dealt...")
-    console.log(" " + playerCards[0]);
-    console.log(" " + playerCards[1]);
-    console.log(" " + playerCards[2]);
+    console.log(" " + getCardString(playerCards[0]));
+    console.log(" " + getCardString(playerCards[1]));
+    console.log(" " + getCardString(playerCards[2]));
 
 
