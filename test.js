@@ -1,34 +1,18 @@
-function myFunction(message, anotherMessage){
-    
-    console.log(message, anotherMessage)
-}
 
-myFunction("Hello" +" " + 42);
-
-function triplePlus(value){
-let newValue = value + value + value;
-return newValue;
-
-}
-
-console.log(triplePlus(3));
+let headerText = document.getElementById('h1');
+let removeText = document.getElementById('removeme');
+let textArea = document.getElementById('text-area');
+let buttonText = document.getElementById('clickme');
 
 
-function mulitplymValue (mValue){
-let xValue = mValue + mValue + mValue;
-return xValue
-}
+let okButton = document.getElementById('clickme');
 
-console.log(mulitplymValue(5));
-//creating objects
-function changeCard(card){
-card.suits = "clubs";
+okButton.addEventListener('click', function(){
 
-}
-let card = {
-suit:  "Hearts",
-value: "Queen"
-};
+textArea.innerText = 'you clicked the button';
+headerText.innerText = 'BOOM !';
+buttonText.innerText = 'Kapowya';
+removeText.style.display = 'none';
+headerText.style.fontSize = "105";
 
-changeCard(card);
-console.log(card.suit)
+});

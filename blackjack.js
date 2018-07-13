@@ -1,25 +1,21 @@
 
-// //let productname = "John\'s Hammer:"
-// //console.log(productName);
+let textArea = document.getElementById('info-area');
+let signature = document.getElementById('sig-text');
+let headerText = document.getElementById('header-text');
+let newGameButton = document.getElementById('new-game-button');
+let hitMeButton = document.getElementById('hit-button');
+let stayButton = document.getElementById('stay-button');
+//let deck = [];
 
-// let price = 5.00, price2 = 3.00;
-// console.log(price + price2);
+hitMeButton.style.display = 'none';
+stayButton.style.display = 'none';
 
-
-// class simpleCounter{
-//      count(){
-//         let count = 5;
-
-//     for (let i = 1; i<= 10; i++){
-//         document.write(i.toString() + '<br>')
-//     }
-//         console.log('All done!');
-//     }
-
-// }
-
-// let count = new simpleCounter
-// count.count();
+newGameButton.addEventListener = ('click', function() {
+    textArea.innerText = 'Game Has been Started...';
+    newGameButton.style.display = 'none';
+    hitMeButton.style.display = 'inline';
+    stayButton.style.display = 'inline';
+});
 
 let suits = ["Hearts", "Clubs", "Diamonds", "Spades"];
 let values = ["Ace","King", "Queen", "Jack", "Ten", "Nice", "Eight", "Seven", "Six", "Five", "Four", "Three", "Two"];
@@ -60,5 +56,12 @@ let playerCards = [getNextCard(),getNextCard() ]
     console.log(" " + getCardString(playerCards[0]));
     console.log(" " + getCardString(playerCards[1]));
     console.log(" " + getCardString(playerCards[2]));
+
+//game start 
+
+
+
+
+    
 
 
