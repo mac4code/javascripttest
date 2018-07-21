@@ -5,7 +5,6 @@ let headerText = document.getElementById('header-text');
 let newGameButton = document.getElementById('new-game-button');
 let hitMeButton = document.getElementById('hit-button');
 let stayButton = document.getElementById('stay-button');
-//let deck = [];
 
 hitMeButton.style.display = 'none';
 stayButton.style.display = 'none';
@@ -16,6 +15,11 @@ newGameButton.addEventListener = ('click', function() {
     hitMeButton.style.display = 'inline';
     stayButton.style.display = 'inline';
 });
+{
+//let deck = createDeck();
+}
+function getNextCard(){
+    return deck.shift();
 
 let suits = ["Hearts", "Clubs", "Diamonds", "Spades"];
 let values = ["Ace","King", "Queen", "Jack", "Ten", "Nice", "Eight", "Seven", "Six", "Five", "Four", "Three", "Two"];
@@ -24,7 +28,7 @@ let values = ["Ace","King", "Queen", "Jack", "Ten", "Nice", "Eight", "Seven", "S
 function createDeck(numberOfDecks){
     deck = []; // clearing the decks
     for (let suitsIndex=0; suitsIndex<suits.length; suitsIndex++){
-        for(let valuesIndex = 0; valuesIndex < values.length; valuesIndex++){
+        for(let valuesIndex = 0; valuesIndex < values.length; values++){
             let card = {
                 suit: suits[suitsIndex],
                 value: value[valuesIndex]
@@ -39,15 +43,6 @@ function createDeck(numberOfDecks){
 
 }
 
-    let deck = createDeck();
-
-}
-
-function getNextCard(){
-    return deck.shift();
-
-}
-
 
 let playerCards = [getNextCard(),getNextCard() ]
 
@@ -55,7 +50,6 @@ let playerCards = [getNextCard(),getNextCard() ]
     console.log("You are dealt...")
     console.log(" " + getCardString(playerCards[0]));
     console.log(" " + getCardString(playerCards[1]));
-    console.log(" " + getCardString(playerCards[2]));
 
 //game start 
 
@@ -64,4 +58,6 @@ let playerCards = [getNextCard(),getNextCard() ]
 
     
 
+}
 
+}
