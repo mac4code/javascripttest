@@ -1,63 +1,90 @@
-
-let textArea = document.getElementById('info-area');
-let signature = document.getElementById('sig-text');
-let headerText = document.getElementById('header-text');
-let newGameButton = document.getElementById('new-game-button');
-let hitMeButton = document.getElementById('hit-button');
-let stayButton = document.getElementById('stay-button');
-
-hitMeButton.style.display = 'none';
-stayButton.style.display = 'none';
-
-newGameButton.addEventListener = ('click', function() {
-    textArea.innerText = 'Game Has been Started...';
-    newGameButton.style.display = 'none';
-    hitMeButton.style.display = 'inline';
-    stayButton.style.display = 'inline';
-});
-{
-//let deck = createDeck();
-}
-function getNextCard(){
-    return deck.shift();
-
+// Card Variables
 let suits = ["Hearts", "Clubs", "Diamonds", "Spades"];
 let values = ["Ace","King", "Queen", "Jack", "Ten", "Nice", "Eight", "Seven", "Six", "Five", "Four", "Three", "Two"];
 
 
-function createDeck(numberOfDecks){
-    deck = []; // clearing the decks
-    for (let suitsIndex=0; suitsIndex<suits.length; suitsIndex++){
-        for(let valuesIndex = 0; valuesIndex < values.length; values++){
-            let card = {
-                suit: suits[suitsIndex],
-                value: value[valuesIndex]
-            };
-            deck.push(card);
-    }
-    return deck;
-    }
-
-    function getCardString(card){
-    return card.value + 'of' + card.suit;
-
-}
+//DOM Variables
+let headerText = document.getElementById('header-text');
+let signature = document.getElementById('sig-text');
+let textArea = document.getElementById('info-area');
+let newGameButton = document.getElementById('new-game-button');
+let hitMeButton = document.getElementById('hit-button');
+let stayButton = document.getElementById('stay-button');
+let dealer = ['Michael Cavaliere', 'Beth Cavaliere', 'Marianne Cavaliere','Rick Cavaliere','Carey Cavaliere','Beth Rosson','Rob Rosson'];
+//give random index from an array math.floor rounds down
+let randomDealer = Math.floor(Math.random() * dealer.length); 
 
 
-let playerCards = [getNextCard(),getNextCard() ]
+// Game Variables
+let gameStarted = false,
+gameOver = false,
+playerWon = false,
+dealerCards = [],
+playerCards = [],
+dealerScore = 0,
+playerScore = 0,
+deck = [];
+
+hitMeButton.style.display = 'none';
+stayButton.style.display = 'none';
+showStatus();
+
+newGameButton.addEventListener ('click', function() {
+    //game setup 
+    gameStarted = true;
+    gameOver = false;
+    playerWon = false;
+
+    //game creation 
+    deck = createDeck();
+    dealerCards = [getNextCard(), getNextCard()];
+    playerCards = [getNextCard(), getNextCard()];
+
+    //ui stuff
+    textArea.innerText = 'Game Has been Started...';
+    newGameButton.style.display = 'none';
+    hitMeButton.style.display = 'inline';
+    stayButton.style.display = 'inline';
+    showStatus();
+    signature.innerText = 'Your dealer is ' + dealer[randomDealer];
+});
+
+
+playerCards = [getNextCard(),getNextCard() ]
 
     console.log("Welcome to Blackjack");
     console.log("You are dealt...")
     console.log(" " + getCardString(playerCards[0]));
-    console.log(" " + getCardString(playerCards[1]));
-
-//game start 
+   console.log(" " + getCardString(playerCards[1]));
 
 
+//create the deck 
+function createDeck() {
+    let deck = []; // clearing the decks
+    for (let suitIndex = 0; suitIndex < suits.length; suitIndex++){
+        for(let valueIndex = 0; valueIndex < values.length; valueIndex++){
+            let card = {
+                suit:  suits[suitIndex],
+                value: values[valueIndex]
+            };
+            deck.push(card);
+        }
+    }
+    return deck;
+    }
 
+    //card functions 
+    function getNextCard(){
+        return deck.shift();
+    }
 
+    function getCardString(card){
+        return card.value + ' of' + card.suit;
+        }
     
 
-}
-
-}
+function showStatus(){
+    if(!gameStarted){
+        textArea.innerText = 'Welcome to Blackjack!'
+        return;
+    }}
