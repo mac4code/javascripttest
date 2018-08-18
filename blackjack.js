@@ -17,20 +17,21 @@ let randomDealer = Math.floor(Math.random() * dealer.length);
 
 // Game Variables
 let gameStarted = false,
-gameOver = false,
-playerWon = false,
-dealerCards = [],
-playerCards = [],
-dealerScore = 0,
-playerScore = 0,
-deck = [];
+    gameOver = false,
+    playerWon = false,
+    dealerCards = [],
+    playerCards = [],
+    dealerScore = 0,
+    playerScore = 0,
+    deck = [];
 
+    //initalize game start buttons
 hitMeButton.style.display = 'none';
 stayButton.style.display = 'none';
 showStatus();
 
-newGameButton.addEventListener ('click', function() {
-    //game setup 
+//New Game setup 
+newGameButton.addEventListener ('click', function() { 
     gameStarted = true;
     gameOver = false;
     playerWon = false;
@@ -51,55 +52,67 @@ newGameButton.addEventListener ('click', function() {
 });
 
 
-playerCards = [getNextCard(),getNextCard() ]
+//create the deck 
+
+function createDeck() {
+    let deck = [];
+    for (let suitIdx = 0; suitIdx < suits.length; suitIdx++) {
+        for (let valueIdx = 0; valueIdx < values.length; valueIdx++) {
+            let card = {
+                suit: suits[suitIdx],
+                value: values[valueIdx]
+            };
+            deck.push( card );
+        }
+    }
+    return deck;
+}
+
+
+
+    //card functions 
+    
+
+
+    function shuffleDeck(deck) {
+        for (let i = 0; i < deck.length; i++) {
+          let swapIdx = Math.trunc(Math.random() * deck.length);
+          let tmp = deck[swapIdx];
+          deck[swapIdx] = deck[i];
+          deck[i] = tmp;
+        }
+      }
+    
+      function getNextCard() {
+        return deck.shift();
+    }
+
+      function showStatus() {
+        if (!gameStarted) {
+          textArea.innerText = 'Welcome to Blackjack!';
+          return;
+        }
+        
+        let dealerCardString = '';
+        for (let i=0; i < dealerCards.length; i++) {
+          dealerCardString += getCardString(dealerCards[i]) + '\n';
+        }
+        
+        let playerCardString = '';
+        for (let i=0; i < playerCards.length; i++) {
+          playerCardString += getCardString(playerCards[i]) + '\n';
+        }
+
+        updateScores();
+
+        function getCardString(card) {
+            return card.value + ' of ' + card.suit;
+        }
+        
 
     console.log("Welcome to Blackjack");
     console.log("You are dealt...")
     console.log(" " + getCardString(playerCards[0]));
    console.log(" " + getCardString(playerCards[1]));
-
-
-//create the deck 
-function createDeck() {
-    let deck = []; // clearing the decks
-    for (let suitIndex = 0; suitIndex < suits.length; suitIndex++){
-        for(let valueIndex = 0; valueIndex < values.length; valueIndex++){
-            let card = {
-                suit:  suits[suitIndex],
-                value: values[valueIndex]
-            };
-            deck.push(card);
-        }
-    }
-    return deck;
     }
 
-    //card functions 
-    function getNextCard(){
-        return deck.shift();
-    }
-
-    function getCardString(card){
-        return card.values + ' of ' + card.suit;
-        }
-    
-
-function showStatus(){
-    if(!gameStarted){
-        textArea.innerText = 'Welcome to Blackjack!'
-        return;
-    }
-    for (var i = 0; i < deck.length; i++) {
-        textArea.innerText += '\n' + getCardString(deck[i]);
-    }
-
-function shuffleDeck(deck){
-    for (let index = 0; index < deck.length; index++) {
-        let swapIndex = Math.trunc(Math.random() * deck.length);
-        let temp = deck[swapIndex];
-        deck[swapIndex] = deck[index];
-        deck[index] = temp;
-    }        
-}
-
-}
